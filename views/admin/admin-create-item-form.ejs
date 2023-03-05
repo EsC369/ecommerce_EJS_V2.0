@@ -335,7 +335,26 @@
               </li>
             </ul>
           </nav>
+          <!-- END OF TOPBAR -->
           <div class="container">
+            <!-- Error Msg: -->
+            <center>
+              <% JSON.stringify(messages) %> <% if(messages.error) { %>
+              <div class="alert alert-danger">
+                <% for (var x of messages.error) { %>
+                <h6 align="center" style="color: red"><%= x %></h6>
+              </div>
+              <% } %> <% } %>
+            </center>
+
+            <!-- Success Msg: -->
+            <center>
+              <div class="alert" role="alert">
+                <h6 style="color:green;" align="center" <%= typeof msg != 'undefined' ? msg : '' %> </h6>
+              </div>
+            </center>
+            
+
             <!-- Begin Page Content -->
             <div class="container-fluid">
               <!-- Page Heading -->

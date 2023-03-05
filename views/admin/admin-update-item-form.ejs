@@ -46,9 +46,24 @@
       <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
+          <!-- ERROR MESSAGE ALERT -->
+          <center>
+            <% JSON.stringify(messages) %> <% if(messages.error) { %>
+            <div class="alert alert-danger">
+              <% for (var x of messages.error) { %>
+              <h6 align="center" style="color: red"><%= x %></h6>
+            </div>
+            <% } %> <% } %>
+          </center>
+
+          <!-- SUCCESS MESSAGE ALERT -->
+          <center>
+            <div class="alert alert-success" role="alert">
+              <%= typeof msg != 'undefined' ? msg : '' %>
+            </div>
+          </center>
           <!-- Topbar -->
 
-          <!-- End of Topbar -->
           <nav
             class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
           >
@@ -364,7 +379,7 @@
 
                 <div class="form-group">
                   <!-- <label for="exampleFormControlInput1">Email address</label> -->
-                  <
+                  
                   <label for="itemName">Current Item Description: </label>
                   <input
                     type="text"
@@ -403,7 +418,7 @@
 
                 <div class="form-group">
                   <!-- <label for="exampleFormControlInput1">Email address</label> -->
-                  <label for="itemImage">Current Item IMage: </label>
+                  <label for="itemImage">Current Item Image: </label>
                   <input
                     type="nuber"
                     class="form-control"
@@ -494,5 +509,17 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script>
+      function ConfirmDelete() {
+        let text =
+          "Are You Sure You Want To Delete This Item?\nEither OK or Cancel.";
+        if (confirm(text) == true) {
+          text = "You pressed OK!";
+        } else {
+          text = "You canceled!";
+        }
+        document.getElementById("demo").innerHTML = text;
+      }
+    </script>
   </body>
 </html>

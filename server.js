@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const dotenv = require('dotenv').config();
+const dotenv = require("dotenv").config();
 const bodyParser = require("body-parser");
 // const config = require("config");
 
@@ -29,30 +29,30 @@ app.use(passport.initialize());
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: false}));
-app.use(express.static(path.join(__dirname + "/public")));  
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname + "/public")));
 
 // Session MIDDLEWARE:
 const session = require("express-session");
 var sess = {
-  secret: 'TEMP PASS',
-  cookie: {maxAge: 600000}
+  secret: "TEMP PASS",
+  cookie: { maxAge: 600000 },
 };
 
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 1) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
-};
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
 
 // Initialize session:
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 600000 } // One hour session - will change later on.
-}));
-
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 600000 }, // One hour session - will change later on.
+  })
+);
 
 const flash = require("express-flash");
 app.use(flash());
@@ -62,8 +62,7 @@ app.use("/", Routes);
 // app.use("/api/users", Users);
 // app.use("/api/items", Items);
 
-
 // Listening
 app.listen(port, () => {
-  console.log(`Server Running On Port: ${port}`)
+  console.log(`Server Running On Port: ${port}`);
 });

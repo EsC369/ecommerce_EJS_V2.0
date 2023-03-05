@@ -239,10 +239,10 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-          ><%= superuser.name != 'undefined' ? superuser.name : 'FAILED TO GRAB
-          NAME' %></span
-        >
+        <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+          <%= localStorage.superuser_name %>
+        </span>
+
         <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
       </a>
       <!-- Dropdown - User Information -->
